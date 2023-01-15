@@ -1,3 +1,6 @@
+"use strict";
+
+function _readOnlyError(name) { throw new TypeError("\"" + name + "\" is read-only"); }
 /*
 
     ES2015의 const 와 let 에 대해서 알아본다.
@@ -26,19 +29,15 @@
     변수 이름 충돌 불가
 */
 
-let msg = 'global scope';
-
+var msg = 'global scope';
 if (true) {
-  let msg = 'block scope';
+  var _msg = 'block scope';
 }
-
 function outer(params) {
-  let msg = 'function scope at outer ';
-
+  var msg = 'function scope at outer ';
   if (true) {
-    let msg = 'block scope at outer ';
+    var _msg2 = 'block scope at outer ';
   }
 }
-
-const pizza = true;
-pizza = false; // 에러 발생.
+var pizza = true;
+false, _readOnlyError("pizza"); // 에러 발생.
