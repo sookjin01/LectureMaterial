@@ -109,7 +109,7 @@
     },
     computed: {
       /* 자동처리 + 동기식. 변수명이 메서드 명이다. 메서드로 작성. return 필수.  data 와 공존 불가 */
-      // 종속 변수
+      // 종속 변수, 짧은 기간안에 쓸수있는것만 사용할껏
       mesg2() {
         return this.$data.mesg1 + "::::" + new Date().toLocaleTimeString()
       }
