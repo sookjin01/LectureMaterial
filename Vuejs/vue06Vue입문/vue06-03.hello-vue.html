@@ -39,8 +39,25 @@
 
       <hr>
 
-      <button onclick="clickBtnjs()">javascript click me</button>
+      <!-- <button onclick="clickBtnjs()">javascript click me</button> -->
+      <button v-on:click="clickBtnjs()">javascript click me</button>
     </div>
   </body>
-
+  <script src="https://unpkg.com/vue@2.7.8/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: 'div#app',
+      data: {
+        message: 'Hello, Vue!!!'
+      },
+      methods: {
+        clickBtn: function (e) {
+          this.$data.message = "mun sook jin";
+        },
+        clickBtnjs: function (e) {
+          this.$data.message = "";
+        }
+      }
+    });
+  </script>
 </html>
