@@ -8,3 +8,14 @@ const string1 = `안녕하세요`;
 const string2 = `반갑습니다.`;
 const preeting = `${string1}, ${string2}`;
 console.log(preeting);
+
+const product = {
+  name: '까까',
+  price: '500원',
+};
+const messaage = `
+  제품 ${product.name} 의  가격은 ${product.price} 입니다.
+
+  end
+`;
+console.log(messaage);
