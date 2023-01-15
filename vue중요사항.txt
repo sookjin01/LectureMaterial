@@ -3,10 +3,10 @@ https://www.npmjs.com/
 
 디버깅시 자주 사용되는 단축키
   debugger
-  F5: vscode에서 디버깅하기
   F8 : 점프
   F10: 한줄씩
   F11: 함수안으로 이동
+  F5 : vscode 에서 디버깅 시작할 때
 
 
 vue 단축키:
@@ -14,7 +14,9 @@ vue 단축키:
   vuei      : .html 파일에서 사용.
 
   vuefc     : 파일 컴포넌트 코드 생성. .vue 파일에서 사용.
-  vuex      : vuex 코드 생성
+
+  vuex      : vuex 코드 생성. .vue 에서 사용.
+
 
 실행중인 서버 중지 : ctrl + c
 
