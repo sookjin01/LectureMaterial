@@ -86,7 +86,7 @@
     data: {
       /* 인스턴스 안에서 사용되는 변수 등록, 공유 변수 */
       state: 'ready',
-      msg: 'hi'
+      // msg: 'hi'
     },
     //template: ``,
     methods: {
@@ -100,7 +100,17 @@
           this.$data.state = "ready"
         }
       }
-
+    },
+    computed: {
+      msg() {
+        if (this.$data.state === "ready") {
+          return 'ready'
+        } else if (this.$data.state === "active") {
+          return 'active'
+        } else if (this.$data.state === "done") {
+          return 'done'
+        }
+      }
     }
   });
 
