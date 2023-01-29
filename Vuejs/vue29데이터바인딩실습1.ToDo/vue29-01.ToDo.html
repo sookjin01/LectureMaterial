@@ -232,16 +232,13 @@
         "ap03-11.객체배열.html" 를 참조하여 작성하시오.
             1. id 값 만 있는 새로운 배열을 만든다. ==> map() 메서드 사용.
             2. map() 메서드로 만들어진 새로운 배열에서 최대값을 찾는다.
-            3. 추가될 새로운 id = max id + 1
+            3. 추가될 새로운 new id = max id + 1
 
 
     주의 사항.
         1. checked 메서드에서 class에 빈 문자열로 설정하면 안됨.
             null 로 설정하면 됨.
-        2. 삭제 버튼을 클릭하면 click 이벤트가 bubbling 되는 것을 확인한다.
-            doneToggle 메서드 안에 debugger; 설정
-            removeTodo 메서드 안에 debugger; 설정
-        3. click 이벤트가 bubbling 안되게 이벤트 취소 기능을 추가해야 한다.
+        2. click 이벤트가 bubbling 안되게 이벤트 취소 기능을 추가해야 한다.
             변경 전: v-on:click="removeTodo(todoItem.id)"
             변경 후: v-on:click.stop="removeTodo(todoItem.id)"
     </pre>
@@ -331,16 +328,73 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> /* jQuery 플러그인 임포트 */</script>
 <script>
   new Vue({
-    /* edtmc^2w */
     el: '#app',
     data: {
-      /* 인스턴스 안에서 사용되는 변수 등록, 공유 변수 */
-
+      newTodoItem: null,
+      showModal: false,
+      todoItems: [
+        { id: 1, todo: "영화보기", done: false },
+        { id: 2, todo: "주말 산책", done: true },
+        { id: 3, todo: "ES6 학습", done: false },
+        { id: 4, todo: "잠실 야구장", done: false }
+      ]
     },
-    //template: ``,
+    // template: ``,
     methods: {
       /* 이벤트 핸들러 등록 + 일반 함수 */
+      addTodo(e) {
+        debugger;
+        // 1. id 값 만 있는 새로운 배열을 만든다. ==> map() 메서드 사용.
+        const ids = this.$data.todoItems.map((item, index, array) => {
+          return item.id;
+        })
+        // 2. map() 메서드로 만들어진 새로운 배열에서 최대값을 찾는다.
+        const maxid = ids.reduce((pvalue, cvalue, index, array) => {
+          if (pvalue > cvalue) {
+            return pvalue
+          } else {
+            return cvalue
+          }
+        }, -1);
+        // 3. 추가될 새로운 new id = max id + 1
+        const newtodo = {
+          id: maxid + 1,
+          todo: this.$data.newTodoItem,
+          done: false
+        }
+        const newTodos = [...this.$data.todoItems, newtodo]
+        this.$data.todoItems = newTodos
 
+        this.$data.newTodoItem = '';
+      },
+      clearAll(e) {
+        this.$data.todoItems = []
+      },
+      checked(done) {
+        return done ? 'checked' : null
+      },
+      doneToggle(id) {
+        // 복제 할당필요
+        const newTodos = this.$data.todoItems.map((item, index, array) => {
+          if (item.id === id) {
+            item.done = !item.done;
+          }
+          return item
+        })
+        this.$data.todoItems = newTodos
+      },
+      removeTodo(id) {
+        // 삭제 ===> filter 사용
+        const newTodos = this.$data.todoItems.filter((item, index, array) => {
+          if (item.id === id) {
+            return false
+          } else {
+            return true
+          }
+        })
+
+        this.$data.todoItems = newTodos
+      }
     },
     components: {
       /* 전역 컴포넌트인 경우는 등록하지 않는다. 전역 컴포넌트는 프로토타입 체인으로 찾을 수 있기 때문에 */
@@ -356,13 +410,13 @@
 
     },
     created() {
-      console.log("created");
+      // console.log("created");
     },
     mounted() {
-      console.log("mounted");
+      // console.log("mounted");
     },
     updated() {
-      console.log("updated");
+      // console.log("updated");
     },
   });
 
