@@ -103,13 +103,7 @@
     },
     computed: {
       msg() {
-        if (this.$data.state === "ready") {
-          return 'ready'
-        } else if (this.$data.state === "active") {
-          return 'active'
-        } else if (this.$data.state === "done") {
-          return 'done'
-        }
+        return this.$data.state
       }
     }
   });
