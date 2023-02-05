@@ -17,6 +17,11 @@ const store = {
       const { commit } = mutations;
       commit('get', payload);
     },
+    // 2번
+    setCounter(mutations /* 고정 */, payload) {
+      const { commit } = mutations;
+      commit('setCounter', payload);
+    },
   },
   mutations: {
     /* 왜 mutations 를 사용하나? state 를 바꾸기 위해서
@@ -30,11 +35,19 @@ const store = {
     get(state /* 고정 */, param /* mutations.commit 호출시 넘겨지는 값 */) {
       state.인자 = param;
     },
+    // 3번
+    setCounter(
+      state /* 고정 */,
+      param /* mutations.commit 호출시 넘겨지는 값 */,
+    ) {
+      state.counter = state.counter + param;
+    },
   },
   state: {
     /* vue인스턴스나 컴포넌트의 data 프로퍼티에 해당 */
     인자: 'STORE STATE',
     welcome: 'HELLO WORLD VUEX',
+    // 1번
     counter: 10,
   },
   getters: {
