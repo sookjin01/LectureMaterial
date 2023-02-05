@@ -359,6 +359,7 @@
         $ ls                            # package.json 이 있는지 확인
         $ npx prettier --check ./src    # ESLint 룰 체크
         $ npx prettier --write ./src    # ESLint 룰에 맞게 코드 수정
+        $ npm run lint                # 와 동일
 
 
     step 4-04. 프로젝트 전체 소스에 새로운 lint 설정 적용하기
@@ -490,9 +491,9 @@
     ##################################
 
     # 작업 폴더 및 파일 만들기
-        $ mkdir -p src/components/vue3103
-        $ touch src/components/vue3103/Vue3103Comp.vue
-        $ touch src/views/Vue3103View.vue
+        $ mkdir -p src/components/vue3103                   #
+        $ touch src/components/vue3103/Vue3103Comp.vue      # 프리젠테이션 컴포넌트(화면표시용)
+        $ touch src/views/Vue3103View.vue                   # 컨테이너
 
     src/App.vue 수정 ==> 페이지 링크 만들기
 
