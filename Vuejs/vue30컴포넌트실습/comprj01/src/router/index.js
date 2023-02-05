@@ -70,6 +70,15 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/ImageSliderView.vue'),
   },
+  {
+    path: '/4301',
+    name: '4301',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../views/Page4301View.vue'),
+  },
 ];
 
 const router = createRouter({
