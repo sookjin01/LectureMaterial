@@ -6,6 +6,7 @@
       <router-link to="/3103">3103</router-link> |
       <router-link to="/3104">3104</router-link> |
       <router-link to="/3403">3403</router-link> |
+      <router-link to="/34ex">34ex</router-link> |
     </nav>
     <router-view />
   </div>
