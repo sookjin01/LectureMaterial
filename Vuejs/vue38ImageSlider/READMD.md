@@ -4,8 +4,8 @@ vue.js 를 이용해서 이미지 슬라이더를 만들어 보겠습니다.
 
 ```
     $ mkdir -p src/components/imageslider
-    $ touch src/components/imageslider/ImageSliderComp.vue
-    $ touch src/views/ImageSliderView.vue
+    $ touch src/components/imageslider/ImageSliderComp.vue    # 프리젠테이션 컴포넌트 만들기
+    $ touch src/views/ImageSliderView.vue                     # 컨테이너 컴포넌트 만들기
 ```
 
 ## 이미지 슬라이더 파일 복사하기
