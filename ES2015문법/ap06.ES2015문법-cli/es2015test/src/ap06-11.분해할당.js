@@ -32,4 +32,23 @@ console.log(type1, color1, medel1);
 
 const { type, color, medel, gear } = car;
 console.log(type, color, medel, gear);
-// 객체는 프로퍼티 명으로 매칭한다.
+
+// 객체는 프로퍼티 이름으로 매칭한다.
+const { type: type2, color: color2, model2: model2, gear: gear2 } = car;
+
+console.log('car02', type2, color2);
+
+const func1 = ({ type, color }) => {
+  console.log('func1 : type', type);
+  console.log('func1 : type', color);
+};
+
+func1(car);
+
+const func2 = (car) => {
+  const { type, color } = car;
+  console.log('func2 : type', type);
+  console.log('func2 : type', color);
+};
+
+func2(car);

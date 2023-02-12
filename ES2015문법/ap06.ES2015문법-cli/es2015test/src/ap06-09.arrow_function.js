@@ -19,3 +19,30 @@
             iterator를 생성해서 next()로 순회할 수 있는 자료구조가 이터러블
 
 */
+const func1 = function (a, b) {
+  return a + b;
+};
+const func2 = (a, b) => {
+  return a + b;
+};
+// const func3 = (a, b) => {a + b};
+// const func3 = (a, b) => (a + b);
+const func3 = (a, b) => a + b;
+
+console.log(func1(3, 4)); // === 7
+console.log(func2(3, 4)); // === 7
+console.log(func3(3, 4)); // === 7
+
+// ES5 로 작성
+const addNumber1 = function (num) {
+  return function (value) {
+    return num + value;
+  };
+};
+
+var addTwo = addNumber1(2);
+var result = addTwo(4); // 6
+
+// 화살표 함수로 변환한 예
+const addNumber2 = (num) => (value) => num + value;
+const result2 = addNumber1(2)(4); // 6
