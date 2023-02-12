@@ -36,3 +36,12 @@ this.$emit()
     return true;
   }
 });
+
+
+debugger >> 가끔 다른 이벤트 버블링을 발생시킨다 (click 이벤트)
+click 이벤트 버블링 막기 => 이벤트 취소
+
+window.event.stopPropagation();
+window.event.preventDefault();
+또는
+v-on:click.stop="이벤트"
