@@ -55,7 +55,7 @@ li.checked {
         <span
           class="removeBtn"
           type="button"
-          v-on:click="removeTodo(todoItem.id)"
+          v-on:click.stop="removeTodo(todoItem.id)"
         >
           <i class="far fa-trash-alt" aria-hidden="true"></i>
         </span>
