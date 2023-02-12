@@ -19,3 +19,22 @@ function func2(...args) {
   console.log('func2 >>', others);
 }
 func2(1, 2, 3, 4, 0);
+
+function func3(first, ...others) {
+  console.log('func2 >>', first);
+  console.log('func2 >>', others);
+}
+func2(1, 2, 3, 4, 0);
+
+const [item1, ...otherItems] = [0, 1, 2];
+
+// 객체형 rest 연산자
+const { other, ...others } = {
+  one: 1,
+  two: 2,
+  three: 3,
+  four: 4,
+  other: 0,
+};
+console.log('combined >> other', other); // other = 0
+console.log('combined >> others', others); // others = { one: 1, two: 2, three: 3, four: 4}
