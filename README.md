@@ -38,6 +38,12 @@ this.$emit()
 });
 
 
+map, reduce 설명
+https://www.zerocho.com/category/JavaScript/post/5acafb05f24445001b8d796d
+
+
+
+
 debugger >> 가끔 다른 이벤트 버블링을 발생시킨다 (click 이벤트)
 click 이벤트 버블링 막기 => 이벤트 취소
 
