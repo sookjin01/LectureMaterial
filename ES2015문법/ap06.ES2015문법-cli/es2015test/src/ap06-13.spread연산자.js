@@ -33,3 +33,40 @@ const countries = [...east, ...wast];
 /* old */
 // const countries = east.concat(wast);
 console.log(countries);
+
+const car1 = {
+  type: 't1',
+  color: 'S1',
+  model: 2019,
+};
+const car2 = {
+  type: 't2',
+  color: 'S2',
+  model: 2019,
+};
+
+const { type } = car1;
+
+const func = ({ type }) => {
+  console.log('func', type);
+};
+
+const newcar = { ...car1, ...car2 };
+func(newcar); // ======> t2 출력
+func({ ...car1, ...car2 }); // ======> t2 출력
+
+const moring = {
+  breacgast: '미역국',
+  lunuch: '삼치구이',
+};
+
+const dinner = '스테이크';
+
+const meals = {
+  ...moring,
+  dinner,
+};
+console.log(meals);
+/*
+{breacgast: '미역국', lunuch: '삼치구이', dinner: '스테이크'}
+*/
