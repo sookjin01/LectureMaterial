@@ -83,6 +83,7 @@ export default {
     },
     removeTodo(id) {
       debugger;
+      this.$emit('removeTodo', id);
     },
     /* 이벤트 핸들러 등록 + 일반 함수 */
     /* vuex 를 사용하는 경우

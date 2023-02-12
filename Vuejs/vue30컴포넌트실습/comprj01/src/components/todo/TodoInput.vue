@@ -127,15 +127,14 @@ export default {
       showModal: false,
     };
   },
-  //template: ``,
   methods: {
     addTodo(e) {
-      console.log(e.target);
+      debugger;
+      if (this.$data.newTodoItem && this.$data.newTodoItem.trim() != '') {
+        this.$emit('addTodo', this.$data.newTodoItem);
+        this.$data.newTodoItem = '';
+      }
     },
-  },
-  components: {
-    /* 전역 컴포넌트인 경우는 등록하지 않는다. 전역 컴포넌트는 프로토타입 체인으로 찾을 수 있기 때문에 */
-    /* 지역 컴포넌트나 파일 컴포넌트만 등록 한다. 예시) "태그명" : 컴포넌트명 */
   },
   computed: {
     /* 자동처리 + 동기식. 메서드로 작성. return 필수. data 와 공존 불가 */

@@ -44,17 +44,56 @@ export default {
     clearAll() {
       this.$data.todoItems = [];
     },
-    addTodo(e) {
-      console.log(e.target);
+    addTodo(newTodoItem) {
       debugger;
+      console.log(newTodoItem);
+      const ids = this.$data.todoItems.map((item) => {
+        return item.id;
+      });
+      let maxid = ids.reduce((pvalue, cvalue, index, array) => {
+        if (pvalue > cvalue) {
+          return pvalue;
+        } else {
+          return cvalue;
+        }
+      }, 0);
+
+      const newid = maxid + 1;
+
+      const newtodo = {
+        id: newid,
+        todo: newTodoItem,
+        done: false,
+      };
+      // this.$data.todoItems.push(newtodo);
+      this.$data.todoItems = [...this.$data.todoItems, newtodo];
     },
     doneToggle(id) {
-      console.log(id);
       debugger;
+      // 1. 배열 복제
+      const newTodos = this.$data.todoItems.map((item) => {
+        debugger;
+        if (item.id === id) {
+          item.done = !item.done;
+        }
+        return item;
+      });
+      // 2. 할당
+      this.$data.todoItems = newTodos;
     },
-    removeTodo(e) {
-      console.log(e.target);
+    removeTodo(id) {
       debugger;
+      // 배열 복제
+      const newTodos = this.$data.todoItems.filter((item, index, arrya) => {
+        if (item.id == id) {
+          return false;
+        } else {
+          return true;
+        }
+      });
+
+      // 배열 할당
+      this.$data.todoItems = newTodos;
     },
     /* 이벤트 핸들러 등록 + 일반 함수 */
     /* vuex 를 사용하는 경우
