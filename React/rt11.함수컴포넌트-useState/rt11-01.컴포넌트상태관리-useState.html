@@ -110,4 +110,74 @@
 </html>
 
 
+<script src="https://unpkg.com/@babel/standalone/babel.js"
+  crossorigin="anonymous"></script>
+<script src="http://unpkg.com/react@17/umd/react.development.js"
+  crossorigin="anonymous"></script>
+<script src="http://unpkg.com/react-dom@17/umd/react-dom.development.js"
+  crossorigin="anonymous">
+  </script>
+<script type="text/babel">
 
+  const { useState, useEffect, useRef, useCallback, useMemo, useReducer, Fragment } = React;
+
+  ReactDOM.render(<ExampleContainer />, document.getElementById('app'));
+
+  function ExampleContainer({
+    ...props
+  }) {
+    const [count, setCount] = useState(10);
+
+    const refIsMounted = useRef(false);
+
+    const callbackCount = useCallback((param) => {
+      setCount(count + 1);
+    }, [/* 연관배열: 콜백 메서드에서 변경하고자 하는 연관되는 상태(변수)명들을 기술  */]);
+
+    const handler = (e) => {
+      console.log(e.target);
+      debugger;
+      callbackCount();
+    };
+
+    return (
+      <div>
+        <Example count={count} callbackCount={callbackCount}></Example>
+      </div>
+    )
+  }
+
+  function Example({
+    count,
+    callbackCount
+  }) {
+    const [age, setAge] = useState(42);
+    const [fruit, setFruit] = useState('banana');
+    const [todos, setTodos] = useState([{ text: 'Learn Hooks' }]);
+
+    const refIsMounted = useRef(false);
+
+    const callback = useCallback((param) => {
+
+    }, [/* 연관배열: 콜백 메서드에서 변경하고자 하는 연관되는 상태(변수)명들을 기술  */]);
+
+    const handlerClick = (e) => {
+      callbackCount();
+      debugger;
+    };
+
+    return (
+      <div>
+        <div>
+          <p>You clicked {count} times</p>
+          <button onClick={handlerClick}>Click me</button>
+        </div>
+        <p> age: {age}</p>
+        <p> fruit: {fruit}</p>
+        {/* 다시보기 */}
+        <p>{todos.map((item, index) => <span key={index}>{item.text}</span>)}</p>
+      </div>
+    )
+  }
+
+</script>
