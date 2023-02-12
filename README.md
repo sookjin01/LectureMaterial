@@ -51,3 +51,8 @@ window.event.stopPropagation();
 window.event.preventDefault();
 또는
 v-on:click.stop="이벤트"
+
+
+리액트
+export default    ===> {} 없게
+export            ===> {} 있게

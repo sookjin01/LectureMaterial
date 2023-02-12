@@ -63,10 +63,61 @@
 
       # 새로운 터미널을 열고 아래 명령어를 실행하여 파일 복사하거나
       # 윈도우 탐색기를 열고 아래 4개의 파일을 webpackprj01/src 폴더에 붙여넣기를 한다.
-      $ cp ../App.css ./src/
-      $ cp ../App.js ./src/
-      $ cp ../Footer.js ./src/
-      $ cp ../Header.js ./src/
+      $ touch ./App.css ./src/
+      $ touch ./App.js ./src/
+      $ touch ./Footer.js ./src/
+      $ touch ./Header.js ./src/
+
+      # /src/App.js 수정
+
+      # /src/Header.js 수정
+
+      # /src/Footer.js 수정
+
+      # ./rt03-03.파일합치기.jquery.html 에서 스타일을 복사한다.
+
+      <style>
+        header {
+          text-align: center;
+          height: 60px;
+        }
+
+        section {
+          text-align: center;
+          height: 150px;
+        }
+
+        footer {
+          text-align: center;
+          height: 60px;
+        }
+
+        /* step2. 배경색 지정*/
+        header {
+          background-color: #efb14e;
+        }
+
+        section {
+          background-color: #95db5e;
+        }
+
+        footer {
+          background-color: #78d0d1;
+        }
+
+        /* step3. 여백 주기 - margin , padding */
+        header {
+          margin: 0 0 20px 0;
+        }
+
+        section {
+          margin: 40px 20px;
+        }
+
+        div {
+          margin: 40px 20px;
+        }
+      </style>
 
     </pre>
   </body>
