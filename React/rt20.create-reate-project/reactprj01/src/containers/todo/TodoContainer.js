@@ -63,16 +63,19 @@ function TodoContainer({ ...props }) {
   );
   const callbackAddTodo = useCallback(
     (value) => {
+      // 아이디만 있는 배열을 만들어
       const maxid =
         todoItems &&
         todoItems
           .map((item) => item.id)
+          // 아이디만 있는 배열에서 제일 큰수를 구하여서
           .reduce((pvalue, cvalue) => {
             if (pvalue > cvalue) return pvalue;
             else return cvalue;
           }, 0);
 
       const newTodo = {
+        // id 값으로 사용
         id: maxid + 1,
         todo: value,
         done: false,
