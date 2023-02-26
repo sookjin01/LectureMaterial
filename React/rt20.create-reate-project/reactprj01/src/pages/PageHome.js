@@ -1,33 +1,47 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
+import { Routes, Route, NavLink } from 'react-router-dom';
+import styled, { css } from 'styled-components';
 
 import CompStyle from '../containers/styled/CompStyle';
 import CrudContainer from '../components/crud/CrudContainer';
 import HomeContainer from '../containers/home/HomeContainer';
+import TodoContainer from '../containers/todo/TodoContainer';
 
+const StyledPageHome = styled.div`
+  .active {
+    background-color: aqua;
+  }
+  .inactive {
+    background-color: none;
+  }
+`;
 function PageHome({ ...props }) {
   return (
-    <div>
+    <StyledPageHome>
       <div>
         <ul>
           <li>
-            <NavLink to="/">Home</NavLink>
+            <NavLink to={''}>Home</NavLink>
           </li>
           <li>
-            <NavLink to="/style">Style</NavLink>
+            <NavLink to={'/style'}>Style</NavLink>
           </li>
           <li>
-            <NavLink to="/crud">Crud</NavLink>
+            <NavLink to={'/crud'}>Crud</NavLink>
+          </li>
+          <li>
+            <NavLink to={'/todo'}>todo</NavLink>
           </li>
         </ul>
       </div>
       <Routes>
         <Route path={'/style'} element={<CompStyle />}></Route>
         <Route path={'/crud'} element={<CrudContainer />}></Route>
+        <Route path={'/todo'} element={<TodoContainer />}></Route>
         <Route path={'/'} element={<HomeContainer />}></Route>
         <Route path={'*'} to={'/'}></Route>
       </Routes>
-    </div>
+    </StyledPageHome>
   );
 }
 

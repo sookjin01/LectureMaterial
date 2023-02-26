@@ -43,7 +43,7 @@ react 단축키:
   reactplugin : .html 파일에서 사용.
   rfchtml     : 함수형 컴포넌트 코드 생성 .html 파일에서 사용.
 
-  rfc         : 함수형 컴포넌트 코드 생성 .js 파일에서 사용.
+  rfcrfc         : 함수형 컴포넌트 코드 생성 .js 파일에서 사용.
   styled      : 스타일 컴포넌트 코드 생성(styled-components)
   rdx         : redux 코드 생성
 
