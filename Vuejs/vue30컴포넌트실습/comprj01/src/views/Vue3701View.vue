@@ -17,37 +17,21 @@
 </template>
 
 <script>
-// vuex 라이브러리에서 mapActions, mapMutations, mapState, mapGetters 함를 가져옵니다.
-// import { mapActions, mapMutations, mapState, mapGetters } from 'vuex';
-import CompChild1 from '../components/vue3701/CompChild1.vue';
-import CompChild2 from '../components/vue3701/CompChild2.vue';
+import child1 from '../components/vue3701/CompChild1.vue';
+import child2 from '../components/vue3701/CompChild2.vue';
 export default {
-  /* pdtmc^2w */
   props: [],
   data() {
     /* 컴포넌트 안에서 사용되는 변수 등록. 개별 변수 */
     return {
-      msg: '집에가고싶다',
+      msg: null,
     };
   },
-  //template: ``,
-  methods: {
-    /* 이벤트 핸들러 등록 + 일반 함수 */
-    /* vuex 를 사용하는 경우
-      mapActions 는 store의 actions 를 가져오는 헬퍼 메서드입니다.
-      namespaced: true를 설정한 경우 네임스페이스를 사용하기 때문에 store의 모듈 명을 적어주어야 합니다.
-      store 모듈에서 actions 를 가져오는 2가지 방식
-      1) store.모듈명.actions 이름 바꾸어 사용하기(추천방식)
-         ...mapActions('모듈명', { dispatch액션명1: '액션명1', dispatch액션명2: '액션명2' }),
-      2) store.모듈명.actions 이름 그대로 사용하기
-         ...mapActions('모듈명', ['액션명1', '액션명2']),
-      */
-  },
   components: {
-    child1: CompChild1,
-    child2: CompChild2,
     /* 전역 컴포넌트인 경우는 등록하지 않는다. 전역 컴포넌트는 프로토타입 체인으로 찾을 수 있기 때문에 */
     /* 지역 컴포넌트나 파일 컴포넌트만 등록 한다. 예시) "태그명" : 컴포넌트명 */
+    child1: child1,
+    child2: child2,
   },
   computed: {
     /* 자동처리 + 동기식. 메서드로 작성. return 필수. data 와 공존 불가 */

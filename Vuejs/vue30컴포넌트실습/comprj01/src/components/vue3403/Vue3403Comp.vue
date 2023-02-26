@@ -8,17 +8,12 @@
 
 <script>
 export default {
-  props: [],
-  data() {
-    return {
-      num: 0,
-    };
-  },
   methods: {
+    /* 이벤트 핸들러 등록 + 일반 함수 */
     showLog(e) {
+      console.log(e.target);
       debugger;
-      this.$data.num = this.$data.num + 1;
-      this.$emit('show-log', this.$data.num);
+      this.$emit('showLog', 'abc', 123);
     },
   },
 };

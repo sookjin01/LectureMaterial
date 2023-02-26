@@ -106,11 +106,16 @@ span.left > img {
     </div>
   </div>
 </template>
+
 <script>
 export default {
+  /* pdtmc^2w */
   props: ['option'],
   data() {
+    /* 컴포넌트 안에서 사용되는 변수 등록. 개별 변수 */
     return {
+      //option: [],
+      // activateImg: {} /* option 과 currIdx 에 종속되는 변수 */,
       width: 800,
       height: 450,
       currIdx: 0,
@@ -118,25 +123,47 @@ export default {
   },
   //template: ``,
   methods: {
+    /* 이벤트 핸들러 등록 + 일반 함수 */
     toLeft(e) {
-      // this.$data.currIdx <= 0 ? (this.$data.currIdx = this.$props.option.length - 1) : (this.$data.currIdx = this.$data.currIdx - 1);
+      console.log(e.targer);
+      debugger;
       this.$data.currIdx = Math.max(this.$data.currIdx - 1, 0);
     },
     toRight(e) {
-      // this.$data.currIdx >= this.$props.option.length - 1 ? (this.$data.currIdx = 0) : (this.$data.currIdx = this.$data.currIdx + 1);
+      console.log(e.target);
+      debugger;
       this.$data.currIdx = Math.min(
         this.$data.currIdx + 1,
         this.$props.option.length - 1,
       );
     },
     setActive(index) {
+      debugger;
       this.$data.currIdx = index;
     },
   },
   computed: {
+    /* 자동처리 + 동기식. 메서드로 작성. return 필수. data 와 공존 불가 */
     activateImg() {
-      return this.$props.option[this.$data.currIdx];
+      /* activateImg option 과 currIdx 에 종속되는 변수 */
+      const curimg = this.$props.option[this.$data.currIdx];
+      debugger;
+      return curimg;
     },
+  },
+  watch: {
+    /* 자동처리 + 비동기식. data 에 등록된 프로퍼티(변수) 모니터링. 메서드로 작성. 매개변수 필수. 외부 api 호출을 위해서 사용 */
+  },
+  created() {
+    console.log('created');
+  },
+  mounted() {
+    console.log('mounted');
+    /* store의 actions 호출 */
+    // this.$store.dispatch('액션명', payload);
+  },
+  updated() {
+    console.log('updated');
   },
 };
 </script>

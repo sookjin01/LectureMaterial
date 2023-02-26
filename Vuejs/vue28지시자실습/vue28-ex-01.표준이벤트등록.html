@@ -63,6 +63,8 @@
           ==> img 태그의 src 속성에 데이터 바인딩을 하려고 한다
               어떤 지시자를 사용하면 될까?
       3. a 태그의 redirect 기능을 취소하시오.
+          event.stopPropagation();
+          event.preventDefault()
 
     문제2.
     id="but1" 인 엘리먼트에 mouseover, mouseout 효과 넣기
@@ -103,7 +105,7 @@
         </li>
       </ul>
       <img id="img2"
-        v-bind:src="image3" />
+        v-bind:src="img_image3" />
       <hr />
 
       <xmp>
@@ -164,11 +166,10 @@
         </xmp>
       <select id="sel"
         v-on:change="selectchange">
-        <option v-for="(option,index) in options"
+        <option v-for="(option, index) in options"
           v-bind:key="index"
-          v-bind:value="option.value"
-          v-bind:data-test="option.test">
-          {{option.text}}
+          v-bind:value="option.value">
+          {{ option.text }}
         </option>
       </select>
 
@@ -184,8 +185,8 @@
         </xmp>
       <input type="text"
         id="ID"
-        v-on:blur="inputblur"
-        v-on:focus="inputfocus" />
+        blur="inputblur"
+        focus="inputfocus" />
       <label style="margin: 0 0 0 20px;">input 태그에 테두리를 칠하는 경우에는 outline을 사용.</label>
       <hr />
 
@@ -194,78 +195,112 @@
 
 </html>
 
-
-<script src="https://unpkg.com/vue@2.7.8/dist/vue.js"></script>
+<!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.7.8/dist/vue.js">/* vue 플러그인 임포트 */</script>
 <script>
   new Vue({
+    /* edtmc^2w */
     el: '#app',
     data: {
-      // 1
-      image3: '../images/image3.jpg',
-      // 2
+      /* 인스턴스 안에서 사용되는 변수 등록, 공유 변수 */
+      img_image3: null,
       img_but1: '../images/but1.gif',
       img_swap: '../images/img_swap_off.png',
+      img_select: '../images/strawberry.gif',
       options: [
-        { value: '../images/strawberry.gif', text: '딸기', test: '01' },
-        { value: '../images/banana.gif', text: '바나나', test: '01' },
-        { value: '../images/apple.gif', text: '사과', test: '01' },
+        { text: '딸기', value: '../images/strawberry.gif' },
+        { text: '바나나', value: '../images/banana.gif' },
+        { text: '사과', value: '../images/apple.gif' },
       ],
-      img_select: '../images/strawberry.gif'
     },
+    //template: ``,
     methods: {
-      imageclick(event) {
-        // 1
-        const href = event.target.href
-        this.$data.image3 = href
-        event.stopPropagation()
-        event.preventDefault()
+      /* 이벤트 핸들러 등록 + 일반 함수 */
+      imageclick(e) {
+        console.log(e.target.href);
+
+        //   1. 클릭된 a 태그의 href 값을 가져온다.
+        const href = e.target.href;
+
+        //   2. id="img2" 의 src 에 1번에서 얻은 href의 값을 넣는다.
+        this.$data.img_image3 = href;
+
+        //   3. a 태그의 redirect 기능을 취소하시오.
+        e.stopPropagation();
+        e.preventDefault()
       },
       imageover(e) {
-        // 2-1
-        if (e.target.id == 'but1') {
-          this.$data.img_but1 = '../images/but2.gif'
-        } else {
-          this.$data.img_swap = '../images/img_swap_on.png'
+        console.log(e.target);
+        //이미지 위에 마우스를 올리면(mouseover) ==> ../images/but2.gif , ../images/img_swap_on.png
+        if (e.target.id === 'but1') {
+          this.$data.img_but1 = '../images/but2.gif';
+        }
+        else {
+          this.$data.img_swap = '../images/img_swap_on.png';
         }
       },
       imageout(e) {
-        // 2-2
-        if (e.target.id == 'but1') {
-          this.$data.img_but1 = '../images/but1.gif'
+        console.log(e.target);
+        // 이미지 위에 마우스를 내리면(mouseout ) ==> ../images/but1.gif , ../images/img_swap_off.png
+        if (e.target.id === 'but1') {
+          this.$data.img_but1 = '../images/but1.gif';
         }
         else {
-          this.$data.img_swap = '../images/img_swap_off.png'
+          this.$data.img_swap = '../images/img_swap_off.png';
         }
       },
       spanmouseover(e) {
-        // 3-yellow
-        e.target.style.backgroundColor = 'yellow'
+        // spanmouseover. background-color 를 yellow 로 설정
+        console.log(e.target);
+        // <span style="background-color:yellow;"></span>
+        e.target.style.backgroundColor = 'yellow';
       },
       spanmousedown(e) {
-        // 3-blue
-        e.target.style.backgroundColor = 'blue'
+        // spanmousedown. background-color 를 blue 로 설정
+        // <span style="background-color:blue;"></span>
+        console.log(e.target);
+        e.target.style.backgroundColor = 'blue';
       },
       spanmouseup(e) {
-        // 3-pink
-        e.target.style.backgroundColor = 'pink'
+        // spanmouseup.   background-color 를 pink 로 설정
+        // <span style="background-color:pink;"></span>
+        console.log(e.target);
+        e.target.style.backgroundColor = 'pink';
       },
       spanmouseout(e) {
-        // 3-red
-        e.target.style.backgroundColor = 'red'
+        // spanmouseout.  background-color 를 red 로 설정
+        // <span style="background-color:red;"></span>
+        console.log(e.target);
+        e.target.style.backgroundColor = 'red';
       },
       selectchange(e) {
-        // document.getElementById('img').setAttribute('src', url)
-        this.$data.img_select = e.target.value
-        console.log(e.target.dataset.test)
-        console.log(e.target.getAttribute('data-test'))
-      },
-      inputfocus(e) {
-        e.target.style.outline = '2px dotted red'
-      },
-      inputblur(e) {
-        e.target.style.outline = 'none'
+        console.log(e.target.value);
+        debugger;
+        this.$data.img_select = e.target.value;
       }
-    }
+    },
+    components: {
+      /* 전역 컴포넌트인 경우는 등록하지 않는다. 전역 컴포넌트는 프로토타입 체인으로 찾을 수 있기 때문에 */
+      /* 지역 컴포넌트나 파일 컴포넌트만 등록 한다. 예시) "태그명" : 컴포넌트명 */
+
+    },
+    computed: {
+      /* 자동처리 + 동기식. 변수명이 메서드 명이다. 메서드로 작성. return 필수.  data 와 공존 불가 */
+
+    },
+    watch: {
+      /* 자동처리 + 비동기식. data 에 등록된 프로퍼티(변수) 모니터링. 메서드로 작성. 매개변수 필수. 외부 api 호출을 위해서 사용 */
+
+    },
+    created() {
+      console.log("created");
+    },
+    mounted() {
+      console.log("mounted");
+    },
+    updated() {
+      console.log("updated");
+    },
   });
 
 </script>

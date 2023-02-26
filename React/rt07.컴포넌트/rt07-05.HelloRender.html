@@ -44,7 +44,6 @@
   </body>
 </html>
 
-
 <script src="https://unpkg.com/@babel/standalone/babel.js"
   crossorigin="anonymous">
     /* 자바스크립트로 컴파일러. ES6-->ES5, JSX-- > ES5 * /
@@ -66,12 +65,11 @@
   ReactDOM.render(<HelloRender />, document.getElementById('app'));
 
   // 단축키 rfc
-
   function HelloRender({
     ...props
   }) {
     // useState 를 사용한 컴포넌트의 상태값 설정
-    const [mesg, setMesg] = useState('Learn React'); // 상태값이 기본타입인 경우
+    const [변수명, set변수명] = useState('기본값'); // 상태값이 기본타입인 경우
 
     // ref 만들기.
     // const refInput = useRef();
@@ -109,16 +107,9 @@
     return (
       <div className="App">
         <header className="App-header">
-          <img
-            src="../images/logo.svg"
-            className="App-logo"
-            alt="logo" />
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer">
-            {mesg}
+          <img src="../images/logo.svg" className="App-logo" alt="logo" />
+          <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
+            Learn React
           </a>
         </header>
       </div>

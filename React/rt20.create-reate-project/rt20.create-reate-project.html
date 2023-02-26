@@ -42,10 +42,10 @@
         v16.18.1
 
         $ npm -v                           #  npm 버전 확인
-        8.19.2
+        9.4.2
 
         $ npx -v                           #  npx(=npm extension) 버전 확인
-        8.19.2
+        9.4.2
 
         $ npm install -g npm@latest        #  npm 최신 버전 설치
 
@@ -70,7 +70,6 @@
         Ok to proceed? (y) y
         ...
         5분 소요
-        책 읽기
         ...
 
         $ ls               # reactprj01 폴더가 보이는지 확인
@@ -127,7 +126,7 @@
 
     step 1-22. styled-components(필수)
         styled-components 는 CSS 표기법을 사용하여
-        인라인 스타일링을 만들 수 있게 해주는 CSS-IN-JS 라이브러리.
+        컴포넌트안에서 인라인 스타일링을 만들 수 있게 해주는 CSS-IN-JS 라이브러리.
         https://www.npmjs.com/package/styled-components
 
         $ npm install --save styled-components @types/styled-components
@@ -157,7 +156,7 @@
         $ npm install --save redux-saga
 
 
-    step 1-26. 비동기 처리(필수)
+    step 1-26. 비동기 api 처리(필수)
         axios : rest api  외부 api를 실행하는 라이브러리
         Promise based HTTP client for the browser and node.js
         https://www.npmjs.com/package/axios
@@ -167,6 +166,8 @@
 
     step 1-27. immer 설치(필수)
         immer : 리덕스 store state 를 불변 객체(읽기 전용)로 처리할 때 사용되는 라이브러리
+        ===> 복제 후 할당을 처리하는 라이브러리
+
         Create the next immutable state tree by simply modifying the current tree
         https://www.npmjs.com/package/immer
 
@@ -196,20 +197,19 @@
         $ npm install --save antd
 
 
-    step 1-34. install the Bootstrap 4
-        $ npm install --save bootstrap reactstrap
-
-
-
-    step 1-35. install react-icons
+    step 1-34. install react-icons
         Include popular icons in your React projects easily with react-icons,
         https://www.npmjs.com/package/react-icons
 
         $ npm install --save react-icons
 
 
-    41. package.json 에 있는 라이브러리 재설치
-    $ npm intall
+    step 1-35. install the Bootstrap 4
+        $ npm install --save bootstrap reactstrap
+
+
+    step 1-41. package.json 에 있는 라이브러리 재설치
+    $ npm install
 
 
 
@@ -374,7 +374,6 @@
             trailingComma: 'all',
             proseWrap: 'always',
             bracketSpacing: true,
-            jsxBracketSameLine: false,
             jsxSingleQuote: false /* JSX 안에서는 " 을 사용 */,
             quoteProps: 'as-needed',
             endOfLine: 'crlf'
@@ -451,7 +450,7 @@
         eslint는 linter이다. 오류를 잡을 때 사용한다.
 
 
-        ESLint의 핵심 구성 정보는 env, globals, rules세가지 영역으로 나누어져 구성되어 있습니다.
+        ESLint의 핵심 구성 정보는 env, globals, rules 세가지 영역으로 나누어져 구성되어 있습니다.
           . env는 실행 환경에 대한 설정, 사전 전역 변수 설정. 브라우저, node, es6 환경이 활성화
           . globals는 사용자가 추가하는 전역 변수 설정.
           . extends 설치한 플러그인들의 적용과 설정에 관한 것들.
@@ -559,7 +558,7 @@
 
 
 
-    4-7. githook 설치 및 설정
+    4-7. commit 전에 자동으로 prettier 적용하기
         githook은 git 에 특정 이벤트(커밋, 푸시 등)를 감지하여
         이벤트를 실행하기 전에 특정 동작을 수행할 수 있도록 도와주는 플러그인 입니다.
 
@@ -569,7 +568,7 @@
 
         lint-staged와 husky를 사용하여 git 이벤트에 Prettier 명령어를 연동 설정.
 
-        commit 전에 자동으로 prettier 적용하기
+        githook 플러그인 설치하기
         $ npm install --save-dev  husky  lint-staged
 
         packages.json 파일 맨 아래에 내용 추가
@@ -596,39 +595,13 @@
         $ pwd                                   # 현재 작업 디렉토리 확인
         $ ls                                    # package.json 파일이 보이는지 확인
         $ git add -AN                           # 신규 파일 추가 추가
-        $ git commit -a -m '프로젝트 설정'          # 파일 commit
+        $ git commit -a -m '프로젝트 설정'      # 파일 commit
         $ git push                              #
 
 
 
-
-
     ##################################
-    5. 서버 실행
-    ##################################
-
-        5-1. 터미널에서 실행중인 서버 중지
-        서버 중지하려면 "ctrl + c" 눌러 프로세스 강제 종료
-
-        5-2. 서버 시작
-        $ ls                # package.json 파일이 보이는지 확인
-        $ npm run start     # package.json 보이면 서버 실행
-
-        Compiled successfully!
-
-        You can now view counterprj06 in the browser.
-
-          Local:            http://localhost:15109
-          On Your Network:  http://192.168.56.1:15109
-
-        Note that the development build is not optimized.
-        To create a production build, use npm run build.
-
-        webpack compiled successfully
-
-
-    ##################################
-    6. 프로젝트 폴더 구조
+    5. 프로젝트 폴더 구조
        소요시간: 05분
     ##################################
 
@@ -692,7 +665,7 @@
     `-- README.md
 
 
-    6-1. 프로젝트용 공통 폴더 생성
+    5-1. 프로젝트용 공통 폴더 생성
       $ mkdir -p ./public/assets \
               ./public/assets/images \
               ./public/assets/styles \
@@ -708,10 +681,37 @@
               ./src/store \
               ./src/utils
 
-    6-2. 프로젝트용 공통 파일 생성
+    5-2. 프로젝트용 공통 파일 생성
       $ touch ./src/reducers/index.js \
               ./src/pages/index.js \
               ./src/store/index.js
+
+
+
+    ##################################
+    6. 서버 실행
+    ##################################
+
+        6-1. 터미널에서 실행중인 서버 중지
+        서버 중지하려면 "ctrl + c" 눌러 프로세스 강제 종료
+
+        6-2. 서버 시작
+        $ ls                # package.json 파일이 보이는지 확인
+        $ npm run start     # package.json 보이면 서버 실행
+
+        Compiled successfully!
+
+        You can now view counterprj06 in the browser.
+
+          Local:            http://localhost:15109
+          On Your Network:  http://192.168.56.1:15109
+
+        Note that the development build is not optimized.
+        To create a production build, use npm run build.
+
+        webpack compiled successfully
+        
+        
 
     ##################################
     11. 기능 설명

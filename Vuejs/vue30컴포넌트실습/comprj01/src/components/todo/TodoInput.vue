@@ -120,21 +120,40 @@ input:focus {
 
 <script>
 export default {
+  /* pdtmc^2w */
   props: [],
   data() {
+    /* 컴포넌트 안에서 사용되는 변수 등록. 개별 변수 */
     return {
-      newTodoItem: null,
+      newTodoItem: null /* 입력된 값 */,
       showModal: false,
     };
   },
   methods: {
+    /* 이벤트 핸들러 등록 + 일반 함수 */
     addTodo(e) {
+      console.log(e.target);
       debugger;
+
+      // 1. 확인 emit 부모 자식 연결이 되는지 확인
+      // 2. addTodo 기능 완성.
+      //   2-1. newTodoItem 이 빈값인 경우 넘기지 않도록 코딩.
+      //        null 이 아니고
+      //        undefined 아니고
+      //        빈 문자열이 아니고
+      //        공백이 아니고
+      //   2-2. TodoInput 컴포넌트의 input 태그에 값을 초기화
       if (this.$data.newTodoItem && this.$data.newTodoItem.trim() != '') {
-        this.$emit('addTodo', this.$data.newTodoItem);
+        this.$emit('addTodo', this.$data.newTodoItem); // 부모 컴포넌트 이벤트 발생
+
+        // input 태그에 입력 값 초기화
         this.$data.newTodoItem = '';
       }
     },
+  },
+  components: {
+    /* 전역 컴포넌트인 경우는 등록하지 않는다. 전역 컴포넌트는 프로토타입 체인으로 찾을 수 있기 때문에 */
+    /* 지역 컴포넌트나 파일 컴포넌트만 등록 한다. 예시) "태그명" : 컴포넌트명 */
   },
   computed: {
     /* 자동처리 + 동기식. 메서드로 작성. return 필수. data 와 공존 불가 */
@@ -147,6 +166,20 @@ export default {
       2) store.모듈명.getters 이름 그대로 사용하기(추천방식)
          ...mapGetters('모듈명', ['게터명1', '게터명2']),
       */
+  },
+  watch: {
+    /* 자동처리 + 비동기식. data 에 등록된 프로퍼티(변수) 모니터링. 메서드로 작성. 매개변수 필수. 외부 api 호출을 위해서 사용 */
+  },
+  created() {
+    console.log('created');
+  },
+  mounted() {
+    console.log('mounted');
+    /* store의 actions 호출 */
+    // this.$store.dispatch('액션명', payload);
+  },
+  updated() {
+    console.log('updated');
   },
 };
 </script>

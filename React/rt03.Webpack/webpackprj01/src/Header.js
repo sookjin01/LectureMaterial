@@ -1,9 +1,8 @@
 function Header({ ...props }) {
-  // JSX로 화면 만들기. 조건부 렌더링: https://ko.reactjs.org/docs/conditional-rendering.html
   return (
     <div w3-include-header="header.html">
       <header data-role="header">
-        <h1>Header Component</h1>
+        <h1>Header Componet</h1>
       </header>
     </div>
   );

@@ -21,12 +21,12 @@
 
 <script>
 export default {
-  props: [],
-  data() {
-    return {};
-  },
   methods: {
-    clearAll() {
+    /* 이벤트 핸들러 등록 + 일반 함수 */
+    clearAll(e) {
+      console.log(e.target);
+      // debugger;
+      // clearAll 이벤트 발생
       this.$emit('clearAll');
     },
   },

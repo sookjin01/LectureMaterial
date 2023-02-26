@@ -2,7 +2,7 @@
 // import axios from 'axios';
 
 const store = {
-  namespaced: true /* 모듈 store 여부 설정 */,
+  namespaced: true /* store 의 모듈 여부 설정 */,
   actions: {
     /* 왜 actions를 사용하나? 비동기로 외부 함수 호출하기 위해서
      * actions 에는 메서드만 등록 가능하다.
@@ -17,9 +17,9 @@ const store = {
       const { commit } = mutations;
       commit('get', payload);
     },
-    // 2번
     setCounter(mutations /* 고정 */, payload) {
       const { commit } = mutations;
+      debugger;
       commit('setCounter', payload);
     },
   },
@@ -35,11 +35,11 @@ const store = {
     get(state /* 고정 */, param /* mutations.commit 호출시 넘겨지는 값 */) {
       state.인자 = param;
     },
-    // 3번
     setCounter(
       state /* 고정 */,
       param /* mutations.commit 호출시 넘겨지는 값 */,
     ) {
+      debugger;
       state.counter = state.counter + param;
     },
   },
@@ -47,7 +47,6 @@ const store = {
     /* vue인스턴스나 컴포넌트의 data 프로퍼티에 해당 */
     인자: 'STORE STATE',
     welcome: 'HELLO WORLD VUEX',
-    // 1번
     counter: 10,
   },
   getters: {

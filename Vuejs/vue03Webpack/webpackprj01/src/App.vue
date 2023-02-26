@@ -1,7 +1,5 @@
 <style scoped>
-div {
-  background: paleturquoise;
-}
+
 </style>
 
 <template>
