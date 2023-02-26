@@ -87,30 +87,21 @@ function CrudListItem({
     console.log(e.target);
   };
   const handlerDel = (e) => {
-    // 이벤트 핸들러는 화살표 함수로 만든다
-    console.log(e.target);
-    debugger;
-    callbackDel();
+    callbackDel(item);
   };
   const handlerUp = (e) => {
     // 이벤트 핸들러는 화살표 함수로 만든다
-    console.log(e.target);
-    debugger;
-    callbackUp();
+    callbackUp(item);
   };
   const handlerDown = (e) => {
-    callbackDown();
+    callbackDown(item);
   };
   const handlerEdit = (e) => {
-    // 수정모드 화면을 호출
-    console.log(e.target);
-    debugger;
     setIsEditMode(!isEditMode);
   };
   const handlerSave = (e) => {
     /* 유효성 체크 */
 
-    debugger;
     const name = refInputName.current.value;
     if (!name || !name.trim()) {
       alert('네임 값을 입력하세요');

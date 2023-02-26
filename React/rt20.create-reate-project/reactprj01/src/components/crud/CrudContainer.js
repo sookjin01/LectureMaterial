@@ -77,34 +77,52 @@ function CrudContainer({ ...props }) {
 
   const callbackDel = useCallback(
     (item) => {
-      // items 배열에서 삭제. Array.filter() 를 사용한다
-      // ...생략
+      console.log(item);
+      const newItems =
+        items &&
+        items.length > 0 &&
+        items.filter((obj) => {
+          if (obj.id === item.id) {
+            return false;
+          } else {
+            return true;
+          }
+        });
+      setItems(newItems);
     },
-    [
-      /* 메서드와 연관되는 상태(변수)명들을 기술 */
-    ],
+    [items],
   );
 
   const callbackUp = useCallback(
     (item) => {
-      //100씩 증가. Array.map() 을 사용한다
-      // item.power = item.power + 100;
-      // ...생략
+      const newItems =
+        items &&
+        items.length > 0 &&
+        items.map((obj) => {
+          if (obj.id === item.id) {
+            obj.power = obj.power + 100;
+          }
+          return obj;
+        });
+      setItems(newItems);
     },
-    [
-      /* 메서드와 연관되는 상태(변수)명들을 기술 */
-    ],
+    [items],
   );
 
   const callbackDown = useCallback(
     (item) => {
-      // 50씩 감소.  Array.map() 을 사용한다
-      // item.power = item.power - 50;
-      // ...생략
+      const newItems =
+        items &&
+        items.length > 0 &&
+        items.map((obj) => {
+          if (obj.id === item.id) {
+            obj.power = obj.power - 50;
+          }
+          return obj;
+        });
+      setItems(newItems);
     },
-    [
-      /* 메서드와 연관되는 상태(변수)명들을 기술 */
-    ],
+    [items],
   );
 
   const callbackSave = useCallback(
