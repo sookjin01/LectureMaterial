@@ -12,6 +12,7 @@ import React, {
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { BrowserRouter, Routes, Route, NavLink, useParams, useLocation, useHistory, useNavigate } from 'react-router-dom';
+import CrudInput from './CrudInput';
 
 const StyledCrudContainer = styled.div`
   .strong {
@@ -82,17 +83,7 @@ function CrudContainer({ ...props }) {
   return (
     <div id="app">
       <h1>Creat Read Update Delete</h1>
-      <div>
-        <div>
-          <label htmlFor="">Name : </label>
-          <input type="text" name="name" placeholder="이름을 입력하세요" />
-        </div>
-        <div>
-          <label htmlFor="">Power : </label>
-          <input type="number" name="power" placeholder="숫자를 입력하세요" />
-        </div>
-        <button type="button">Add</button>
-      </div>
+      <CrudInput></CrudInput>
       <hr />
       <table>
         <thead>
