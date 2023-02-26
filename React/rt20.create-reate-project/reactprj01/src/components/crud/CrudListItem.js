@@ -33,9 +33,11 @@ function CrudListItem({
   callbackDown,
   callbackSave,
 }) {
+  const refInputName = useRef();
+  const refInputPower = useRef();
   // useState 를 사용한 컴포넌트의 상태값 설정
   const [변수명, set변수명] = useState('기본값'); // 기본타입인 경우
-  const [state, setState] = useState({ id: 0, name: '', age: 0 }); // 참조타입 경우
+  const [isEditMode, setIsEditMode] = useState(false); // 참조타입 경우
 
   // useReducer 를 사용한 컴포넌트의 상태값 설정.
   // 리듀서는 현재 상태를 받아서 새 상태를 반환하는 함수다
@@ -97,19 +99,60 @@ function CrudListItem({
     callbackUp();
   };
   const handlerDown = (e) => {
-    console.log(e.target);
-    debugger;
     callbackDown();
   };
   const handlerEdit = (e) => {
     // 수정모드 화면을 호출
     console.log(e.target);
+    debugger;
+    setIsEditMode(!isEditMode);
+  };
+  const handlerSave = (e) => {
+    /* 유효성 체크 */
+
+    debugger;
+    const name = refInputName.current.value;
+    if (!name || !name.trim()) {
+      alert('네임 값을 입력하세요');
+      refInputName.current.focus(); // 포커스qweqwe 주기
+      e.stopPropagation(); // 이벤트 취소
+      return false;
+    }
+
+    const power = refInputPower.current.value;
+    if (!power || !power.trim()) {
+      alert('파워에 값을 입력하세요');
+      refInputPower.current.focus(); // 포커스 주기
+      e.stopPropagation(); // 이벤트 취소
+      return false;
+    }
+
+    // Power의 입력값이 숫자인지 유효성 검사.
+    if (isNaN(Number(power))) {
+      alert('파워에 값을 입력하세요');
+      refInputPower.current.focus(); // 포커스 주기
+      e.stopPropagation(); // 이벤트 취소
+      return false;
+    }
+
+    const newItem = {
+      id: item.id,
+      name: name,
+      power: Number(refInputPower.current.value),
+    };
+
+    // 부모에 데이터 전송
+    callbackSave(newItem);
+
+    // 활성화 취소
+    setIsEditMode(!isEditMode);
   };
 
   // JSX로 화면 만들기. 조건부 렌더링: https://ko.reactjs.org/docs/conditional-rendering.html
   let strong = '';
   if (item.power >= 300) strong = 'strong';
-  return (
+
+  const formView = (
     <StyledCrudListItem className={strong}>
       <td>{item.id}</td>
       <td>{item.name}</td>
@@ -130,6 +173,47 @@ function CrudListItem({
       </td>
     </StyledCrudListItem>
   );
+  const formEdit = (
+    <StyledCrudListItem className={strong}>
+      <td>{item.id} </td>
+      <td>
+        <input
+          type="text"
+          name="name"
+          placeholder="이름을 입력하세요"
+          defaultValue={item.name}
+          ref={refInputName}
+        />
+      </td>
+      <td>
+        <input
+          type="number"
+          name="power"
+          placeholder="숫자를 입력하세요"
+          defaultValue={item.power}
+          ref={refInputPower}
+        />
+      </td>
+      <td>
+        <button type="button" onClick={handlerDel}>
+          Del
+        </button>
+        <button type="button" onClick={handlerUp}>
+          Power Up
+        </button>
+        <button type="button" onClick={handlerDown}>
+          Power Down
+        </button>
+        <button type="button" onClick={handlerSave}>
+          save
+        </button>
+      </td>
+    </StyledCrudListItem>
+  );
+
+  if (isEditMode) return formEdit;
+  else return formView;
+  // return CrudListItem.isEditMode === true ? formEdit : formView;
 }
 
 CrudListItem.propTypes = {
