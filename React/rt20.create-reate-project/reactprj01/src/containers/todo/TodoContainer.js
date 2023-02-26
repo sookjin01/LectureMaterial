@@ -14,6 +14,7 @@ import {
 import TodoHeader from './components/TodoHeader';
 import TodoFooter from './components/TodoFooter';
 import TodoList from './components/TodoList';
+import TodoInput from './components/TodoInput';
 
 const StyledTodoContainer = styled.div``;
 
@@ -60,6 +61,26 @@ function TodoContainer({ ...props }) {
     },
     [todoItems],
   );
+  const callbackAddTodo = useCallback(
+    (value) => {
+      const maxid =
+        todoItems &&
+        todoItems
+          .map((item) => item.id)
+          .reduce((pvalue, cvalue) => {
+            if (pvalue > cvalue) return pvalue;
+            else return cvalue;
+          }, 0);
+
+      const newTodo = {
+        id: maxid + 1,
+        todo: value,
+        done: false,
+      };
+      setTodoItems([...todoItems, newTodo]); // 스프레드 연산자
+    },
+    [todoItems],
+  );
 
   // 이벤트 핸들러 작성.
   const handler = (e) => {
@@ -73,32 +94,7 @@ function TodoContainer({ ...props }) {
       <div id="app">
         <TodoHeader></TodoHeader>
 
-        <div className="inputBox shadow">
-          <input type="text" placeholder="Type what you have to do" />
-          <span className="addContainer">
-            <i aria-hidden="true" className="addBtn fas fa-plus"></i>
-          </span>
-
-          <div className="modal-mask" style={{ display: 'none' }}>
-            <div className="modal-wrapper">
-              <div className="modal-container">
-                <div className="modal-header">
-                  <h3 slot="header">경고</h3>
-                </div>
-
-                <div className="modal-footer">
-                  <span>
-                    할 일을 입력하세요.
-                    <i
-                      className="closeModalBtn fas fa-times"
-                      aria-hidden="true"
-                    ></i>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <TodoInput callbackAddTodo={callbackAddTodo}></TodoInput>
 
         <TodoList
           todoItems={todoItems}
