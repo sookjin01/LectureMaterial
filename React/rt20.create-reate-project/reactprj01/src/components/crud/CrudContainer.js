@@ -111,12 +111,15 @@ function CrudContainer({ ...props }) {
     (newitem) => {
       // newitem 으로 바뀐 새로운 배열 만들기.
       // Array.map() 을 사용
-      const newItems = items.map((item) => {
-        if (item.id === newitem.id) {
-          return newitem;
-        }
-        return item;
-      });
+      const newItems =
+        items &&
+        items.length > 0 &&
+        items.map((item) => {
+          if (item.id === newitem.id) {
+            return newitem;
+          }
+          return item;
+        });
       setItems(newItems); // items = newItems;
     },
     [
